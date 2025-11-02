@@ -17,48 +17,31 @@ private:
     long id;
 
 public:
-    Activity(string Name, string Description, int start_hour, int end_hour) {
-        this->id = rand();
-        this->Name = Name;
-        this->Description = Description;
-        this->start_hour = start_hour;
-        this->end_hour = end_hour;
-    }
+    Activity(const string& Name, const string& Description, int start_hour, int end_hour)
+        : Name(Name), Description(Description), start_hour(start_hour), end_hour(end_hour), id(rand()) {}
 
-    Activity(const Activity &activity_cp) {
-        this->id = activity_cp.id;
-        this->Name = activity_cp.Name;
-        this->Description = activity_cp.Description;
-        this->start_hour = activity_cp.start_hour;
-        this->end_hour = activity_cp.end_hour;
-    }
+    Activity(const Activity &activity_cp)
+        : Name(activity_cp.Name), Description(activity_cp.Description),
+          start_hour(activity_cp.start_hour), end_hour(activity_cp.end_hour),
+          id(activity_cp.id) {}
 
     Activity& operator=(const Activity &activity_eq) {
         if (this != &activity_eq) {
-            this->id = activity_eq.id;
-            this->Name = activity_eq.Name;
-            this->Description = activity_eq.Description;
-            this->start_hour = activity_eq.start_hour;
-            this->end_hour = activity_eq.end_hour;
+            id = activity_eq.id;
+            Name = activity_eq.Name;
+            Description = activity_eq.Description;
+            start_hour = activity_eq.start_hour;
+            end_hour = activity_eq.end_hour;
         }
         return *this;
     }
 
     ~Activity() {}
 
-    string getName() { return Name; }
-    void setName(string Name) { this->Name = Name; }
-
-    string getDescription() { return Description; }
-    void setDesc(string Description) { this->Description = Description; }
+    long getId() const { return id; }
 
     int getStartHour() const { return start_hour; }
-    void setStartHr(int start_hour) { this->start_hour = start_hour; }
-
     int getEndHour() const { return end_hour; }
-    void setEndHr(int end_hour) { this->end_hour = end_hour; }
-
-    long getId() const { return id; }
 
     friend ostream& operator<<(ostream& out, const Activity& m) {
         out << "Name: " << m.Name
@@ -83,54 +66,32 @@ private:
     long id;
 
 public:
-    Transport(Transport_Type type, int start_hour, int end_hour, const string& start_station, string end_station) {
-        this->id = rand();
-        this->type = type;
-        this->start_hour = start_hour;
-        this->end_hour = end_hour;
-        this->start_station = start_station;
-        this->end_station = end_station;
-    }
+    Transport(Transport_Type type, int start_hour, int end_hour, const string& start_station, const string& end_station)
+        : type(type), start_hour(start_hour), end_hour(end_hour),
+          start_station(start_station), end_station(end_station), id(rand()) {}
 
-    Transport(const Transport &transport_cp) {
-        this->id = transport_cp.id;
-        this->type = transport_cp.type;
-        this->start_hour = transport_cp.start_hour;
-        this->end_hour = transport_cp.end_hour;
-        this->start_station = transport_cp.start_station;
-        this->end_station = transport_cp.end_station;
-    }
+    Transport(const Transport &transport_cp)
+        : type(transport_cp.type), start_hour(transport_cp.start_hour), end_hour(transport_cp.end_hour),
+          start_station(transport_cp.start_station), end_station(transport_cp.end_station),
+          id(transport_cp.id) {}
 
     Transport& operator=(const Transport &transport_eq) {
         if (this != &transport_eq) {
-            this->id = transport_eq.id;
-            this->type = transport_eq.type;
-            this->start_hour = transport_eq.start_hour;
-            this->end_hour = transport_eq.end_hour;
-            this->start_station = transport_eq.start_station;
-            this->end_station = transport_eq.end_station;
+            id = transport_eq.id;
+            type = transport_eq.type;
+            start_hour = transport_eq.start_hour;
+            end_hour = transport_eq.end_hour;
+            start_station = transport_eq.start_station;
+            end_station = transport_eq.end_station;
         }
         return *this;
     }
 
     ~Transport() {}
 
-    Transport_Type getType() const { return type; }
-    void setType(Transport_Type type) { this->type = type; }
-
-    int getStartHour() const { return start_hour; }
-    void setStartHour(int start_hour) { this->start_hour = start_hour; }
-
-    int getEndHour() const { return end_hour; }
-    void setEndHour(int end_hour) { this->end_hour = end_hour; }
-
-    string getStartStation() const { return start_station; }
-    void setStartStation(const string& start_station) { this->start_station = start_station; }
-
-    string getEndStation() const { return end_station; }
-    void setEndStation(string end_station) { this->end_station = end_station; }
-
     long getId() const { return id; }
+    int getStartHour() const { return start_hour; }
+    int getEndHour() const { return end_hour; }
 };
 
 // ==================== CLASS CALENDAR ====================
@@ -142,10 +103,8 @@ private:
 public:
     Calendar() {}
 
-    Calendar(const Calendar& calendar_cp) {
-        activities = calendar_cp.activities;
-        transports = calendar_cp.transports;
-    }
+    Calendar(const Calendar& calendar_cp)
+        : activities(calendar_cp.activities), transports(calendar_cp.transports) {}
 
     Calendar& operator=(const Calendar &calendar_eq) {
         if (this != &calendar_eq) {
@@ -267,32 +226,20 @@ int main() {
     const Transport T2 = Transport(Transport::BUS, 11, 12, "Pacii", "Unirii");
 
     Calendar C1;
-    bool ret = C1.addTransport(T1);
-    cout << ret << endl;
-    ret = C1.addTransport(T2);
-    cout << ret << endl;
+    cout << C1.addTransport(T1) << endl;
+    cout << C1.addTransport(T2) << endl;
 
-    ret = C1.removeTransport(T2.getId());
-    cout << ret << endl;
-    ret = C1.removeTransport(T2.getId());
-    cout << ret << endl;
-
-    cout << endl;
+    cout << C1.removeTransport(T2.getId()) << endl;
+    cout << C1.removeTransport(T2.getId()) << endl;
 
     const Activity A1 = Activity("antrenament", "am antrenament cu alex", 18, 20);
     const Activity A2 = Activity("antrenament", "am antrenament cu cosmin", 15, 17);
 
-    bool ret2 = C1.addActivity(A1);
-    cout << ret2 << endl;
-    ret2 = C1.addActivity(A2);
-    cout << ret2 << endl;
+    cout << C1.addActivity(A1) << endl;
+    cout << C1.addActivity(A2) << endl;
 
-    ret2 = C1.removeActivity(A2.getId());
-    cout << ret2 << endl;
-    ret2 = C1.removeActivity(A2.getId());
-    cout << ret2 << endl;
-
-    cout << endl;
+    cout << C1.removeActivity(A2.getId()) << endl;
+    cout << C1.removeActivity(A2.getId()) << endl;
 
     C1.checkSleep();
 
