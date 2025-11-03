@@ -7,7 +7,6 @@
 
 using namespace std;
 
-// ==================== CLASS ACTIVITY ====================
 class Activity {
 private:
     string Name;
@@ -52,7 +51,6 @@ public:
     }
 };
 
-// ==================== CLASS TRANSPORT ====================
 class Transport {
 public:
     enum Transport_Type { BUS, METRO, CAR };
@@ -94,7 +92,6 @@ public:
     int getEndHour() const { return end_hour; }
 };
 
-// ==================== CLASS CALENDAR ====================
 class Calendar {
 private:
     vector<Activity> activities;
@@ -218,7 +215,6 @@ public:
     }
 };
 
-// ==================== MAIN ====================
 int main() {
     srand(time(NULL));
 
