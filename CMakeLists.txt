@@ -47,9 +47,17 @@ include(cmake/CopyHelper.cmake)
 
 ###############################################################################
 
+set(SOURCES
+    Calendar.cpp Calendar.h
+    Activity.cpp Activity.h
+    Transport.cpp Transport.h
+    Exceptions.h
+)
+
 # NOTE: update executable name in .github/workflows/cmake.yml:25 when changing name here
 add_executable(${MAIN_EXECUTABLE_NAME}
     main.cpp
+    ${SOURCES}
 )
 
 # NOTE: Add all defined targets (e.g. executables, libraries, etc. )
