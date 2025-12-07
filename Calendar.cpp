@@ -159,22 +159,19 @@ void Calendar::displayProgram() const {
         } else if (it_trans == end_trans) {
             print_activity = true;
         } else {
-            if ((*it_act)->getStartHour() <= it_trans->getStartHour()) {
-                print_activity = true;
-            } else {
-                print_activity = false;
-            }
+            print_activity = (*it_act)->getStartHour() <= it_trans->getStartHour();
         }
 
         if (print_activity) {
             cout << **it_act << "\n";
             ++it_act;
-        } else {
+        } else if (it_trans != end_trans) {
             cout << *it_trans << "\n";
             ++it_trans;
         }
     }
 }
+
 
 
 void Calendar::displayByPriority() const {

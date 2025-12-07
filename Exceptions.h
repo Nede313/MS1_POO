@@ -6,24 +6,28 @@
 
 using namespace std;
 
-class CalendarException : public runtime_error {
+class CalendarException : public std::runtime_error {
 public:
-    CalendarException(const string& message) : runtime_error(message) {}
+    explicit CalendarException(const std::string& message)
+        : std::runtime_error(message) {}
 };
 
 class OverlapException : public CalendarException {
 public:
-    OverlapException(const string& message) : CalendarException(message) {}
+    explicit OverlapException(const std::string& message)
+        : CalendarException(message) {}
 };
 
 class InvalidIntervalException : public CalendarException {
 public:
-    InvalidIntervalException(const string& message) : CalendarException(message) {}
+    explicit InvalidIntervalException(const std::string& message)
+        : CalendarException(message) {}
 };
 
 class ConfigurationException : public CalendarException {
 public:
-    ConfigurationException(const string& message) : CalendarException(message) {}
+    explicit ConfigurationException(const std::string& message)
+        : CalendarException(message) {}
 };
 
 #endif
