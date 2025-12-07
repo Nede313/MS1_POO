@@ -27,7 +27,6 @@ public:
     Transport& operator=(const Transport &transport_eq) = default;
     ~Transport() = default;
 
-    long getId() const { return id; }
     double getStartHour() const { return start_hour; }
     double getEndHour() const { return end_hour; }
     double getCost() const { return cost; }
