@@ -1,6 +1,9 @@
-# Nu primesc notă pentru că nu am pus titlu și descriere
+# Weekly calendar
 
-### Folosiți template-ul corespunzător grupei voastre!
+### Scopul proiectului este realizarea unui calendar care cuprinde programul
+### zilnic de la activitatile scolare, la cele sportive incluzand chiar si timpul
+### petrecut in trafic. De asemenea va include si activitati neplanificate
+### anuntandu-ma cand programul de somn prestabilit este modficat.
 
 | Laborant  | Link template                                |
 |-----------|----------------------------------------------|
